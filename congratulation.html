@@ -10,7 +10,59 @@
   margin: 0;
   padding: 0;
 }
+h1 {
+    color: #333;
+}
 
+.steps-container {
+  margin-top: 25px;
+  width: fit-content;
+  margin: auto;
+    
+}
+
+.step {
+    display: flex;
+    justify-content: left;
+    /* margin: auto; */
+    margin: 15px 0;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step-number {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 15px;
+
+}
+
+.step-content {
+    text-align:justify;
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+}
 @keyframes confetti-slow {
   0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
   
@@ -229,8 +281,36 @@
       <div class="checkmark draw"></div>
     </div>
     <h1>Congratulations!</h1>
-    <p>You are all set. Well done!</p>
     <button class="submit-btn" type="submit" onclick="openFile()">Continue</button>
+    <div class="container">
+      <h1>Redeem Your Offer</h1>
+      <p>Follow the steps below to claim your reward:</p>
+
+      <div class="steps-container">
+          <div class="step" id="step1">
+              <span class="step-number">1</span>
+              <div class="step-content">
+                  <h3>Install the app</h3>
+                  <p>Download and install the app from link.</p>
+              </div>
+          </div>
+          <div class="step" id="step2">
+              <span class="step-number">2</span>
+              <div class="step-content">
+                  <h3>Register Your Number.</h3>
+                  <p>Sign up with your mobile number.</p>
+              </div>
+          </div>
+          <div class="step" id="step3">
+              <span class="step-number">3</span>
+              <div class="step-content">
+                  <h3>Redeem Your Reward.</h3>
+                  <p>Enter the Redeem code for free recharge.</p>
+              </div>
+          </div>
+          
+      </div>
+
   </div>  
 
   
@@ -293,5 +373,41 @@ window.open("index.html");
 
 }
 </script>
+<script >let currentStep = 1;
+  const totalSteps = 4;
+  
+  function updateSteps() {
+      // Update step visibility
+      for (let i = 1; i <= totalSteps; i++) {
+          const stepElement = document.getElementById(`step${i}`);
+          if (i === currentStep) {
+              stepElement.classList.add("active");
+          } else {
+              stepElement.classList.remove("active");
+          }
+      }
+  
+      // Update status
+      const statusElement = document.getElementById("status");
+      statusElement.textContent = `Step ${currentStep} of ${totalSteps}`;
+  
+      // Disable button if it's the last step
+      const nextStepButton = document.getElementById("nextStepButton");
+      if (currentStep === totalSteps) {
+          nextStepButton.textContent = "Completed!";
+          nextStepButton.disabled = true;
+      }
+  }
+  
+  document.getElementById("nextStepButton").addEventListener("click", () => {
+      if (currentStep < totalSteps) {
+          currentStep++;
+          updateSteps();
+      }
+  });
+  
+  // Initialize
+  updateSteps();
+  </script>
 </body>
 </html>
