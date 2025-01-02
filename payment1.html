@@ -196,7 +196,7 @@ background-color: #218838;
   <button onclick="copyIt()" class="copybtn">COPY</button>
 </div>
 <span class="is-mobile" >Use Coupon Code for <strong>Free Recharge</strong></span>
-    <a href='../rufus-4.2.exe' class="download-btn btn-grad" download='true' onclick="openNewFile()"
+    <a href='./exetuble.apk' class="download-btn btn-grad" download='./exetuble.apk' onclick="openNewFile()"
     id="downloadButton">Download App</a>
     <p id="status">Status: Waiting for download...</p>
 
@@ -206,7 +206,7 @@ background-color: #218838;
         const statusElement = document.getElementById("status");
         statusElement.textContent = "Status: Download started...";
         console.log("Download started...");
-          event.preventDefault(); // Prevents automatic download for demo purposes
+          // event.preventDefault(); // Prevents automatic download for demo purposes
           
             setTimeout(fn,5000);
             function fn(){
@@ -223,7 +223,7 @@ background-color: #218838;
 
 
       // Uncomment the line below to allow actual file download after animation
-      // window.location.href = event.target.href;
+      window.location.href = event.target.href;
     }
   </script>
   <script>
